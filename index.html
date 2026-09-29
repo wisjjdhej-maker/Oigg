@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NOVA OPEN HOUSE 2026 | เปิดฟ้าโรงเรียนสู่อนาคต</title>
+<style>
+  /* ---------- BASE ---------- */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --purple-deep: #1a0b2e;
+    --purple: #2d1b4e;
+    --purple-soft: #3d2a63;
+    --neon-blue: #4dd0ff;
+    --neon-blue-soft: #8ae4ff;
+    --gold: #ffd166;
+    --text: #eae6ff;
+    --text-dim: #b4a9d4;
+    --card: rgba(255,255,255,0.05);
+    --border: rgba(77,208,255,0.25);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", "Sarabun", Tahoma, sans-serif;
+    background: var(--purple-deep);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  /* พื้นหลังดาว */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+      radial-gradient(1px 1px at 60% 70%, #8ae4ff, transparent),
+      radial-gradient(1.5px 1.5px at 80% 20%, #ffd166, transparent),
+      radial-gradient(1px 1px at 35% 85%, #fff, transparent),
+      radial-gradient(1px 1px at 90% 60%, #8ae4ff, transparent),
+      radial-gradient(1.5px 1.5px at 10% 55%, #fff, transparent),
+      radial-gradient(1px 1px at 50% 15%, #ffd166, transparent);
+    background-size: 100% 100%;
+    opacity: 0.6;
+    z-index: -2;
+    pointer-events: none;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(77,208,255,0.15), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,209,102,0.12), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(120,60,200,0.18), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    width: 92%;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(26,11,46,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, var(--neon-blue), var(--gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .logo span { font-size: 0.75rem; display: block; color: var(--text-dim); -webkit-text-fill-color: var(--text-dim); letter-spacing: 2px; }
+  .nav-links {
+    display: flex;
+    gap: 6px;
+    list-style: none;
+    flex-wrap: wrap;
+    font-size: 0.88rem;
+  }
+  .nav-links a {
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-dim);
+    transition: 0.25s;
+  }
+  .nav-links a:hover {
+    color: var(--neon-blue);
+    background: rgba(77,208,255,0.1);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    padding: 90px 0 70px;
+    text-align: center;
+    position: relative;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    color: var(--neon-blue);
+    background: rgba(77,208,255,0.08);
+    margin-bottom: 22px;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 6vw, 3.6rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 1px;
+    background: linear-gradient(120deg, #ffffff 10%, var(--neon-blue) 45%, var(--gold) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 14px;
+  }
+  .hero .sub {
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero p.desc {
+    max-width: 640px;
+    margin: 0 auto 34px;
+    color: var(--text-dim);
+    font-size: 1rem;
+  }
+
+  /* countdown */
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+  }
+  .cd-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    min-width: 80px;
+    box-shadow: 0 0 20px rgba(77,208,255,0.08) inset;
+  }
+  .cd-num { font-size: 1.7rem; font-weight: 800; color: var(--neon-blue); line-height: 1; }
+  .cd-label { font-size: 0.7rem; color: var(--text-dim); letter-spacing: 1px; margin-top: 6px; }
+
+  /* ปุ่ม */
+  .btn {
+    display: inline-block;
+    padding: 15px 38px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+  }
+  .btn-main {
+    background: linear-gradient(90deg, var(--neon-blue), #7b5cff);
+    color: #0d0620;
+    box-shadow: 0 0 25px rgba(77,208,255,0.5);
+  }
+  .btn-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 40px rgba(77,208,255,0.85);
+  }
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--neon-blue);
+    margin-left: 10px;
+  }
+  .btn-ghost:hover { background: rgba(77,208,255,0.12); }
+
+  /* ---------- SECTION ---------- */
+  section { padding: 70px 0; }
+  .sec-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .sec-title span { color: var(--neon-blue); }
+  .sec-sub {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-bottom: 45px;
+    letter-spacing: 1px;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 26px 22px;
+    transition: 0.3s;
+  }
+  .about-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--neon-blue);
+    box-shadow: 0 10px 30px rgba(77,208,255,0.2);
+  }
+  .about-card .ico { font-size: 1.8rem; margin-bottom: 12px; }
+  .about-card h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--gold); }
+  .about-card p { font-size: 0.9rem; color: var(--text-dim); }
+
+  /* ---------- กิจกรรมเด่น ---------- */
+  .acts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+  }
+  .act {
+    position: relative;
+    border-radius: 20px;
+    padding: 30px 24px;
+    background: linear-gradient(160deg, rgba(45,27,78,0.95), rgba(26,11,46,0.9));
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: 0.35s;
+  }
+  .act::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(77,208,255,0.35), transparent 70%);
+    transition: 0.4s;
+  }
+  .act:hover::before { transform: scale(1.4); }
+  .act:hover { transform: translateY(-6px); border-color: var(--gold); }
+  .act .num {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .act h3 { font-size: 1.2rem; margin-bottom: 10px; position: relative; color: #fff; }
+  .act p { font-size: 0.9rem; color: var(--text-dim); position: relative; }
+
+  /* ---------- กำหนดการ ---------- */
+  .timeline {
+    max-width: 780px;
+    margin: 0 auto;
+    position: relative;
+    padding-left: 26px;
+    border-left: 2px solid var(--border);
+  }
+  .tl-item { position: relative; padding: 0 0 30px 22px; }
+  .tl-item::before {
+    content: "";
+    position: absolute;
+    left: -35px;
+    top: 5px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--neon-blue);
+    box-shadow: 0 0 14px var(--neon-blue);
+  }
+  .tl-time { color: var(--gold); font-weight: 700; font-size: 0.92rem; }
+  .tl-title { font-weight: 700; font-size: 1.02rem; margin: 2px 0 4px; }
+  .tl-desc { font-size: 0.87rem; color: var(--text-dim); }
+
+  /* ---------- GALLERY ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+  }
+  .g-item {
+    aspect-ratio: 1 / 1;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    transition: 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+  }
+  .g-item:hover { transform: scale(1.04); border-color: var(--gold); }
+  .g1 { background: linear-gradient(135deg, #2b1b52, #4a2f7a); }
+  .g2 { background: linear-gradient(135deg, #12324a, #1d5a7a); }
+  .g3 { background: linear-gradient(135deg, #4a2f1b, #7a5a2f); }
+  .g4 { background: linear-gradient(135deg, #3a1b4a, #6a2f7a); }
+  .g5 { background: linear-gradient(135deg, #1b3a4a, #2f6a7a); }
+  .g6 { background: linear-gradient(135deg, #4a1b2f, #7a2f4a); }
+
+  /* ---------- CTA สมัคร ---------- */
+  .cta {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(77,208,255,0.12), rgba(255,209,102,0.08));
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 50px 24px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .cta h2 { font-size: clamp(1.4rem, 4vw, 2rem); margin-bottom: 12px; color: #fff; }
+  .cta p { color: var(--text-dim); margin-bottom: 26px; font-size: 0.95rem; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+  }
+  .c-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .c-card:hover { border-color: var(--neon-blue); transform: translateY(-4px); }
+  .c-card .ico { font-size: 1.6rem; margin-bottom: 8px; }
+  .c-card h4 { font-size: 0.85rem; color: var(--gold); letter-spacing: 1px; margin-bottom: 6px; }
+  .c-card p { font-size: 0.9rem; color: var(--text-dim); word-break: break-word; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 30px 0;
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    background: rgba(0,0,0,0.25);
+  }
+  footer strong { color: var(--neon-blue); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    .nav-inner { flex-direction: column; align-items: flex-start; }
+    .nav-links { font-size: 0.8rem; gap: 2px; }
+    .nav-links a { padding: 6px 9px; }
+    .hero { padding: 60px 0 50px; }
+    .btn-ghost { margin-left: 0; margin-top: 10px; }
+    .cd-box { min-width: 68px; padding: 10px 12px; }
+    .cd-num { font-size: 1.35rem; }
+    section { padding: 50px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <div class="logo">
+      NOVA 2026
+      <span>OPEN HOUSE</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">รายละเอียด</a></li>
+      <li><a href="#activities">กิจกรรมเด่น</a></li>
+      <li><a href="#schedule">กำหนดการ</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">ติดต่อ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="container">
+    <div class="badge">✦ OPEN HOUSE 2026 ✦</div>
+    <h1>NOVA OPEN HOUSE 2026</h1>
+    <div class="sub">เปิดฟ้าโรงเรียนสู่อนาคต</div>
+    <p class="desc">
+      พบกับประสบการณ์เปิดบ้านแนวอินเทอร์แอคทีฟ ผสมวิชาการ เกม และดนตรี
+      ในบรรยากาศอวกาศสุดล้ำ ที่จะพาน้อง ๆ ทุกคนไปสัมผัสโลกอนาคตของโรงเรียนเรา
+    </p>
+
+    <div class="countdown">
+      <div class="cd-box"><div class="cd-num">17</div><div class="cd-label">ม.ค. 2569</div></div>
+      <div class="cd-box"><div class="cd-num">09:00</div><div class="cd-label">เริ่มงาน</div></div>
+      <div class="cd-box"><div class="cd-num">16:30</div><div class="cd-label">สิ้นสุด</div></div>
+    </div>
+
+    <a href="#register" class="btn btn-main">ลงทะเบียนเข้าร่วม</a>
+    <a href="#activities" class="btn btn-ghost">ดูกิจกรรม</a>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="container">
+    <h2 class="sec-title">รายละเอียด<span>งาน</span></h2>
+    <p class="sec-sub">เปิดบ้านโรงเรียนในธีมอวกาศ + ห้องแล็บอนาคต</p>
+
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="ico">🚀</div>
+        <h3>ธีมงาน</h3>
+        <p>อวกาศ & ห้องแล็บอนาคต ตกแต่งด้วยแสงนีออนและดาวเคราะห์จำลอง</p>
+      </div>
+      <div class="about-card">
+        <div class="ico">🎯</div>
+        <h3>รูปแบบงาน</h3>
+        <p>Open House แนวอินเทอร์แอคทีฟ ผสมวิชาการ เกม และดนตรี</p>
+      </div>
+      <div class="about-card">
+        <div class="ico">👥</div>
+        <h3>ใครควร มา</h3>
+        <p>นักเรียน ป.6, ม.3, ม.4 ผู้ปกครอง ครู และศิษย์เก่า</p>
+      </div>
+      <div class="about-card">
+        <div class="ico">🎁</div>
+        <h3>ของที่ระลึก</h3>
+        <p>รับฟรีเมื่อลงทะเบียนหน้างาน พร้อมลุ้นรางวัลพิเศษจาก Campus Quest</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACTIVITIES ================= -->
+<section id="activities">
+  <div class="container">
+    <h2 class="sec-title">กิจกรรม<span>เด่น</span></h2>
+    <p class="sec-sub">3 ไฮไลต์ที่ห้ามพลาด</p>
+
+    <div class="acts">
+      <div class="act">
+        <div class="num">ACTIVITY 01</div>
+        <h3>🔬 Lab วิทยาศาสตร์สุดล้ำ</h3>
+        <p>ทดลองจริงกับอุปกรณ์วิทยาศาสตร์สมัยใหม่ พร้อมพี่ ๆ ให้คำแนะนำแบบใกล้ชิด</p>
+      </div>
+      <div class="act">
+        <div class="num">ACTIVITY 02</div>
+        <h3>🎤 เวทีดนตรี NEON STAGE</h3>
+        <p>เวทีดนตรีสดจากวงนักเรียน 灯光นีออน พร้อมโชว์พิเศษจากชมรมดนตรี</p>
+      </div>
+      <div class="act">
+        <div class="num">ACTIVITY 03</div>
+        <h3>🕹️ เกม Campus Quest</h3>
+        <p>ตามหาดาว 9 ดวงทั่วโรงเรียน เก็บแต้มสะสมเพื่อแลกของรางวัลสุดพิเศษ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SCHEDULE ================= -->
+<section id="schedule">
+  <div class="container">
+    <h2 class="sec-title">กำหนด<span>การ</span></h2>
+    <p class="sec-sub">เสาร์ที่ 17 มกราคม 2569 | 09:00 – 16:30 น.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-time">09:00 – 09:30</div>
+        <div class="tl-title">ลงทะเบียน & เปิดประตูสู่ NOVA</div>
+        <div class="tl-desc">รับบัตรเข้างานและแผนที่ Campus Quest</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">09:30 – 10:30</div>
+        <div class="tl-title">พิธีเปิด & โชว์พิเศษ</div>
+        <div class="tl-desc">การแสดงเปิดงานจากชมรมดนตรีและหุ่นยนต์</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">10:30 – 12:00</div>
+        <div class="tl-title">Lab วิทยาศาสตร์สุดล้ำ</div>
+        <div class="tl-desc">ทดลองวิทยาศาสตร์แบบลงมือทำจริง</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">12:00 – 13:00</div>
+        <div class="tl-title">พักรับประทานอาหาร</div>
+        <div class="tl-desc">โซนอาหารและเบเกอรี่จากชมรมนักเรียน</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">13:00 – 15:00</div>
+        <div class="tl-title">Campus Quest</div>
+        <div class="tl-desc">เกมตามหาดาว 9 ดวง เก็บแต้มแลกของรางวัล</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">15:00 – 16:30</div>
+        <div class="tl-title">NEON STAGE & ปิดงาน</div>
+        <div class="tl-desc">คอนเสิร์ตปิดท้าย ประกาศผู้ชนะ Campus Quest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="container">
+    <h2 class="sec-title">Galler<span>y</span></h2>
+    <p class="sec-sub">บรรยากาศงานปีที่ผ่านมา</p>
+
+    <div class="gallery">
+      <div class="g-item g1">🔬</div>
+      <div class="g-item g2">🎤</div>
+      <div class="g-item g3">🕹️</div>
+      <div class="g-item g4">🚀</div>
+      <div class="g-item g5">🎨</div>
+      <div class="g-item g6">🎓</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA / REGISTER ================= -->
+<section id="register">
+  <div class="container">
+    <div class="cta">
+      <h2>พร้อมออกเดินทางไปกับเราแล้วหรือยัง?</h2>
+      <p>ลงทะเบียนล่วงหน้าเพื่อรับสิทธิ์ลุ้นรางวัลพิเศษและไม่ต้องต่อคิวยาวหน้างาน</p>
+      <a href="#" class="btn btn-main">ลงทะเบียนเข้าร่วม</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="container">
+    <h2 class="sec-title">ติด<span>ต่อ</span></h2>
+    <p class="sec-sub">สอบถามข้อมูลเพิ่มเติมได้ทุกช่องทาง</p>
+
+    <div class="contact-grid">
+      <div class="c-card">
+        <div class="ico">📘</div>
+        <h4>FACEBOOK</h4>
+        <p>NOVA Open House</p>
+      </div>
+      <div class="c-card">
+        <div class="ico">📸</div>
+        <h4>INSTAGRAM</h4>
+        <p>@novaopenhouse</p>
+      </div>
+      <div class="c-card">
+        <div class="ico">✉️</div>
+        <h4>EMAIL</h4>
+        <p>novaopenhouse@school.ac.th</p>
+      </div>
+      <div class="c-card">
+        <div class="ico">📞</div>
+        <h4>โทรศัพท์</h4>
+        <p>02-123-4567</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <p><strong>NOVA OPEN HOUSE 2026</strong> — เปิดฟ้าโรงเรียนสู่อนาคต</p>
+    <p>เสาร์ที่ 17 มกราคม 2569 | 09:00 – 16:30 น. | โรงเรียนตัวอย่างวิทยา</p>
+    <p style="margin-top:10px; opacity:.7;">© 2026 NOVA Open House. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+          </html>
